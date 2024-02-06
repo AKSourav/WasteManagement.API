@@ -69,7 +69,8 @@ class WasteCollectionRecordAPI(APIView):
                 print(wasteItem)
             recordTuple.total_price = float(total_price) or 0.0
             print("Here2:",WasteCollectionRecordSerializer(recordTuple,many=False).data)
-            recordTuple.save()        
+            recordTuple.save()
+            WasteCollectionPoint.objects.filter(collection_point_id=collection_point_id).update(status='complete')  
             return Response(WasteCollectionRecordSerializer(recordTuple,many=False).data, status=200)
         except Exception as e:
             print(e)
