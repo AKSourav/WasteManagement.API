@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z*of91t0hh(j(p%44y$iq#b*(^+*qqdqhv-(@xuts3%7(ns(!b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['wastemanagement-api2.onrender.com']
 
