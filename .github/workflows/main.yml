@@ -32,16 +32,9 @@ jobs:
             EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
             POSTGRES_URL=${{ secrets.POSTGRES_URL }}
 
-  deploy-to-render:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Deploy to Render
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
-          service-id: ${{ env.MY_RENDER_SERVICE_ID }}
-          api-key: ${{ env.MY_RENDER_API_KEY }}
-        env:
-          RENDER_SERVICE_ID: ${{ env.MY_RENDER_SERVICE_ID }}
-          RENDER_API_KEY: ${{ env.MY_RENDER_API_KEY }}
+          service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.MY_RENDER_API_KEY }}
+          wait-for-success: true
