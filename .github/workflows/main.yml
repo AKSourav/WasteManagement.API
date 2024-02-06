@@ -1,35 +1,46 @@
-name: Django Deployment
+name: Build and Deploy to Render
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main # Replace with your default branch name if different
+
+env:
+  RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+  RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: aksourav/nextjs-docker:0
+          tags: aksourav/waste-management-api:latest
           build-args: |
-            EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
             EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}
+            EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
             POSTGRES_URL=${{ secrets.POSTGRES_URL }}
 
+  deploy-to-render:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Deploy to Render
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
-          service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.MY_RENDER_API_KEY }}
-          wait-for-success: true
+          service-id: ${{ env.RENDER_SERVICE_ID }}
+          api-key: ${{ env.RENDER_API_KEY }}
