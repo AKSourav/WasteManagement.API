@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-z*of91t0hh(j(p%44y$iq#b*(^+*qqdqhv-(@xuts3%7(ns(!b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wastemanagement-api2.onrender.com']
 
 
 # Application definition
@@ -124,7 +124,7 @@ MIDDLEWARE = [
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
