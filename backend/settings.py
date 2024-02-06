@@ -154,23 +154,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'TestDATABASE',
-#         # 'ENFORCE_SCHEMA': False,
-#         'CLIENT': {
-#             'host': 'mongodb+srv://anupmandalds25:anupmandalds25@anuragkumar.v1radyy.mongodb.net/?retryWrites=true&w=majority',
-#             # 'port': 27017,
-#             # 'username': 'anupmandalds25',
-#             # 'password': 'anupmandalds25',
-#             # 'authSource': 'admin',
-#             # 'authMechanism': 'SCRAM-SHA-1',
-#         }
-#     }
-# }
-
-# DATABASES = {"default": dj_database_url.parse('postgres://anupam:I6Jyw6ux5TdGP2HznqPUCfaKZFvBJ0bO@dpg-cmgo58gl5elc7380qntg-a.oregon-postgres.render.com/waste_management_xx7h')}
 
 DATABASES = {
     'default': {
