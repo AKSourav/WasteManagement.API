@@ -42,3 +42,6 @@ jobs:
         with:
           service-id: ${{ env.MY_RENDER_SERVICE_ID }}
           api-key: ${{ env.MY_RENDER_API_KEY }}
+        env:
+          RENDER_SERVICE_ID: ${{ env.MY_RENDER_SERVICE_ID }}
+          RENDER_API_KEY: ${{ env.MY_RENDER_API_KEY }}
